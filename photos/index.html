@@ -2281,7 +2281,12 @@
                                 .to('.hero__text .mask-inner', { y: 0, visibility: 'visible', duration: 0.8, stagger: 0.15, ease: "expo.out" }, "-=0.3")
                                 .from('.hero__quicknav', { opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.3");
 
-                            initScrollAnimations();
+                            // Defer ScrollTrigger creation until browser completes layout
+                            requestAnimationFrame(function () {
+                                requestAnimationFrame(function () {
+                                    initScrollAnimations();
+                                });
+                            });
                         });
                     });
 

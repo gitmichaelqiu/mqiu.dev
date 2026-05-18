@@ -538,7 +538,12 @@
                     // Particles start spreading immediately
                     gsap.to(particles.state, { progress: 1, duration: 3.0, ease: "power2.out" });
 
-                    initScrollAnimations();
+                    // Defer ScrollTrigger creation until browser completes layout
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            initScrollAnimations();
+                        });
+                    });
 
                     // ── Hover Follower (RK-style) ──
                     var cards = document.querySelectorAll('[data-hover-follow]');
